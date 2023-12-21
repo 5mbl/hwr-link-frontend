@@ -1,6 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
 import config from "@/config";
-import Header from "@/components/Header";
 
 export default function Document() {
   return (
@@ -35,7 +34,7 @@ export default function Document() {
           src="https://plausible.io/js/script.js"
         ></script>
       </Head>
-      
+
       <body>
 
         <Main />

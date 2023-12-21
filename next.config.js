@@ -11,7 +11,7 @@ const nextConfig = {
       "zakxqorxaxrohdzocisr.supabase.co",
       "supabase.co"
     ],
-  },
+  }
 };
 
 module.exports = nextConfig;

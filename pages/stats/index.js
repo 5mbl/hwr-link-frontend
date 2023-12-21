@@ -3,23 +3,36 @@ import React, { useState } from 'react';
 import { getClickCount } from '../api/backendAPI/apiService';
 
 const CheckClicksPage = () => {
-    const [shortId, setShortId] = useState('');
+    const [inputUrl, setInputUrl] = useState('');
     const [clickCount, setClickCount] = useState(null);
     const [error, setError] = useState('');
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); // Prevent default form submission behavior
+        event.preventDefault();
+        const shortId = inputUrl.split('/').pop(); // Extrahiert die ID aus der URL
+
+        if (!shortId) {
+            setError('Bitte geben Sie eine gültige gekürzte URL ein.');
+            setClickCount(null);
+            return;
+        }
+
         try {
-            const result = await getClickCount(shortId);
-            setClickCount(result.clickCount); // Access the clickCount property of the result object
-            console.log(result)
-            setError(''); // Clear any previous errors
-        } catch (error) {
-            console.error('Error:', error);
-            setError('Failed to retrieve click count. Please make sure the URL is correct.');
-            setClickCount(null); // Reset click count in case of error
+            const response = await getClickCount(shortId);
+            if (response.clickCount !== undefined) {
+                setClickCount(response.clickCount); // Speichert nur den clickCount-Wert
+                setError('');
+            } else {
+                throw new Error('Invalid response format');
+            }
+        } catch (err) {
+            console.error('Fehler beim Abrufen der Klickanzahl:', err);
+            setError('Fehler beim Abrufen der Klickanzahl. Bitte überprüfen Sie die URL.');
+            setClickCount(null);
         }
     };
+
+
 
     return (
         <div className="max-w-lg mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
@@ -27,8 +40,8 @@ const CheckClicksPage = () => {
             <form onSubmit={handleSubmit} className="flex flex-col">
                 <input
                     type="text"
-                    value={shortId}
-                    onChange={(e) => setShortId(e.target.value)}
+                    value={inputUrl}
+                    onChange={(e) => setInputUrl(e.target.value)}
                     placeholder="Enter shortened ID"
                     className="w-full p-2 border border-gray-300 rounded-md focus:border-black focus:ring-2 focus:ring-red-500 mb-4"
                 />

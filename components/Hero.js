@@ -10,21 +10,14 @@ const Hero = () => {
           Never use long links again.
         </h1>
         <p className="text-lg opacity-80 leading-relaxed">
-          hwr.link offer all students a tool to short academic long URL's into compact and short links.
+          hwr.link offer all students a tool to short academic long URLs into compact and short links.
         </p>
-        <button className="btn btn-primary btn-wide">Start now</button>
+        <button className="btn btn-primary btn-wide">Start Shorting</button>
 
-        <TestimonialsAvatars priority={true} />
       </div>
       <div className="lg:w-full">
-        <Image
-          src="https://zakxqorxaxrohdzocisr.supabase.co/storage/v1/object/sign/designs/3-Minutes%20(1).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJkZXNpZ25zLzMtTWludXRlcyAoMSkucG5nIiwiaWF0IjoxNzAyOTIyOTY0LCJleHAiOjE3MzQ0NTg5NjR9.FYeOJXlDJckdXYjZRQvRMWPZuI0O_FcC6LjfGXzEOFU&t=2023-12-18T18%3A09%3A24.761Z"
-          alt="Product Demo"
-          className="w-full"
-          priority={true}
-          width={300}
-          height={500}
-        />
+
+        <img src="https://zakxqorxaxrohdzocisr.supabase.co/storage/v1/object/sign/designs/3-Minutes.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJkZXNpZ25zLzMtTWludXRlcy5zdmciLCJpYXQiOjE3MDMxOTgwMjEsImV4cCI6MTczNDczNDAyMX0.trkRQdWjPG54t6DozUCbK0ysFGwUpVa4dQek05wPvWI&t=2023-12-21T22%3A33%3A40.405Z"></img>
       </div>
     </section>
   );
