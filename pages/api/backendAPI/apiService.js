@@ -1,5 +1,5 @@
 // apiService.js
-const BASE_URL = 'https://hwr-link-backend.onrender.com'; // Replace with your Flask server URL
+const BASE_URL = 'https://hwr.link'; // Replace with your Flask server URL (https://hwr-link-backend.onrender.com)
 
 export const shortenUrl = async (originalUrl) => {
     try {
@@ -37,3 +37,17 @@ export const getClickCount = async (shortId) => {
     }
 };
 
+// Function to get the live list of shortened URLs
+export const getLiveUrlList = async () => {
+    try {
+        const response = await fetch(`${BASE_URL}/get/live_urls`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return data; // Assuming the backend returns a list of URL objects
+    } catch (error) {
+        console.error('Error fetching live URL list:', error);
+        throw error;
+    }
+};

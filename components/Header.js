@@ -7,16 +7,24 @@ import config from "@/config";
 
 const links = [
   {
-    href: "/stats",
-    label: "Stats",
+    href: "/",
+    label: "Home 🏠",
   },
   {
     href: "/shortner",
-    label: "Shortner",
+    label: "Shortner ✂️ ",
   },
   {
-    href: "/#faq",
-    label: "FAQ",
+    href: "/stats",
+    label: "Stats 📊",
+  },
+  {
+    href: "/team",
+    label: "Project Team 🏆",
+  },
+  {
+    href: "/live",
+    label: "Live 🔴",
   },
 ];
 
@@ -96,7 +104,7 @@ const Header = () => {
         </div>
 
         {/* CTA on large screens */}
-        {/*<div className="hidden lg:flex lg:justify-end lg:flex-1">{cta}</div>*/}
+        <div className="hidden lg:flex lg:justify-end lg:flex-1">{ }</div>
       </nav>
 
       {/* Mobile menu, show/hide based on menu state. */}

@@ -1,11 +1,28 @@
 // CheckClicksPage.js
 import React, { useState } from 'react';
 import { getClickCount } from '../api/backendAPI/apiService';
+import { Bar } from 'react-chartjs-2';
+import 'chart.js/auto';
 
 const CheckClicksPage = () => {
     const [inputUrl, setInputUrl] = useState('');
     const [clickCount, setClickCount] = useState(null);
     const [error, setError] = useState('');
+    const [chartData, setChartData] = useState({});
+
+    const updateChartData = (clickCount) => {
+        setChartData({
+            labels: ['Clicks'],
+            datasets: [
+                {
+                    label: 'Number of Clicks',
+                    data: [clickCount],
+                    backgroundColor: ['rgba(54, 162, 235, 0.6)'],
+                },
+            ],
+        });
+    };
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -22,6 +39,8 @@ const CheckClicksPage = () => {
             if (response.clickCount !== undefined) {
                 setClickCount(response.clickCount); // Speichert nur den clickCount-Wert
                 setError('');
+                updateChartData(response.clickCount);
+
             } else {
                 throw new Error('Invalid response format');
             }
@@ -30,6 +49,7 @@ const CheckClicksPage = () => {
             setError('Fehler beim Abrufen der Klickanzahl. Bitte überprüfen Sie die URL.');
             setClickCount(null);
         }
+
     };
 
 
@@ -42,7 +62,7 @@ const CheckClicksPage = () => {
                     type="text"
                     value={inputUrl}
                     onChange={(e) => setInputUrl(e.target.value)}
-                    placeholder="Enter shortened ID"
+                    placeholder="Enter shortened link"
                     className="w-full p-2 border border-gray-300 rounded-md focus:border-black focus:ring-2 focus:ring-red-500 mb-4"
                 />
                 <button
@@ -64,6 +84,31 @@ const CheckClicksPage = () => {
                     {error}
                 </p>
             )}
+            {/* Chart display */}
+            {clickCount !== null && (
+                <div className="mt-4">
+                    <Bar data={chartData} />
+                </div>
+            )}
+            {/* Tutorial Section for Check Stats Page */}
+            <div className="mt-10">
+                <h2 className="text-2xl font-bold text-center mb-6">How to Check Stats</h2>
+                <div className="flex flex-col gap-4">
+                    <div className="flex items-center">
+                        <div className="rounded-full bg-green-500 text-white w-8 h-8 flex items-center justify-center mr-3">1</div>
+                        <p>Enter the shortened URL or its ID in the provided text field.</p>
+                    </div>
+                    <div className="flex items-center">
+                        <div className="rounded-full bg-green-500 text-white w-8 h-8 flex items-center justify-center mr-3">2</div>
+                        <p>Click the Check Stats button to view the statistics of the URL.</p>
+                    </div>
+                    <div className="flex items-center">
+                        <div className="rounded-full bg-green-500 text-white w-8 h-8 flex items-center justify-center mr-3">3</div>
+                        <p>Review the displayed information, such as click count and referral sources.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 };

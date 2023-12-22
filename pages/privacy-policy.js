@@ -27,10 +27,7 @@ import config from "@/config";
 const PrivacyPolicy = () => {
   return (
     <div className="max-w-xl mx-auto">
-      <TagSEO
-        title={`Privacy Policy | ${config.appName}`}
-        canonicalSlug="privacy-policy"
-      />
+
 
       <div className="p-5">
         <Link href="/" className="btn btn-ghost">
@@ -48,7 +45,7 @@ const PrivacyPolicy = () => {
           </svg>{" "}
           Back
         </Link>
-        <h1 className="text-3xl font-bold pb-6">Privacy Policy for ShipFast</h1>
+        <h1 className="text-3xl font-bold pb-6">Privacy Policy for hwr.link</h1>
 
         <pre
           className="leading-relaxed whitespace-pre-wrap"
